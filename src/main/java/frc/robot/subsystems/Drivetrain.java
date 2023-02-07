@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -17,11 +16,11 @@ public class Drivetrain extends SubsystemBase {
   private final Encoder m_rightEncoder = new Encoder(6, 7);
   
   // VictorSPX motor controllers
-	WPI_VictorSPX _leftFront = new WPI_VictorSPX(Constants.LEFTMASTERPORT);
+  WPI_VictorSPX _leftFront = new WPI_VictorSPX(Constants.LEFTMASTERPORT);
   WPI_VictorSPX _leftFollower = new WPI_VictorSPX(Constants.LEFTSLAVEPORT);
   WPI_VictorSPX _rghtFront = new WPI_VictorSPX(Constants.RIGHTMASTERPORT);
   WPI_VictorSPX _rghtFollower = new WPI_VictorSPX(Constants.RIGHTSLAVEPORT);
-  WPI_TalonFX _midMotor = new WPI_TalonFX(Constants.MIDMOTORPORT);
+  WPI_VictorSPX _midMotor = new WPI_VictorSPX(Constants.MIDMOTORPORT);
 
   // Grouped motor controllers
   DifferentialDrive _diffDrive = new DifferentialDrive(_leftFront, _rghtFront);
@@ -39,6 +38,7 @@ public class Drivetrain extends SubsystemBase {
       }
       }
     slide = slide / 1;
+	  
     /* drive robot */
     _diffDrive.arcadeDrive(move, turn);
     _midMotor.set(slide);
